@@ -16,7 +16,9 @@ runs:
     - name: Cache node_modules
       uses: actions/cache@v2
       with:
-        path: '**/node_modules'
+        path: |
+          node_modules
+          **/*/node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Install Node.js dependencies
       run: yarn --frozen-lockfile --no-progress --non-interactive

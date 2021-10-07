@@ -13,7 +13,11 @@ runs:
       uses: actions/setup-node@v2
       with:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
-        cache: 'yarn'
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Install Node.js dependencies
       run: yarn --frozen-lockfile --no-progress --non-interactive
       shell: bash

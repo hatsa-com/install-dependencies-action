@@ -1,0 +1,19 @@
+name: 'Install dependencies'
+description: 'Check out the repository, set up node.js according to the .nvmrc file and install dependencies using yarn'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - name: Read .nvmrc
+      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+      shell: bash
+      id: nvm
+    - name: Setup Node.js (.nvmrc)
+      uses: actions/setup-node@v2
+      with:
+        node-version: "${{ steps.nvm.outputs.NVMRC }}"
+        cache: 'yarn'
+    - name: Install Node.js dependencies
+      run: yarn --frozen-lockfile --no-progress --non-interactive
+      shell: bash

@@ -22,5 +22,5 @@ runs:
           **/*/node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Install Node.js dependencies
-      run: if [[ "${{ steps.modules-cache.cache-hit }}" != "true" ]]; then yarn; fi
+      run: if [[ "${{ steps.modules-cache.outputs.cache-hit }}" != "true" ]]; then yarn; fi
       shell: bash

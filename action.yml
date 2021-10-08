@@ -13,3 +13,13 @@ runs:
       uses: actions/setup-node@v2
       with:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+          **/*/node_modules
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Install Node.js dependencies
+      run: yarn --no-progress --non-interactive
+      shell: bash

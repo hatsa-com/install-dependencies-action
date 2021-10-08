@@ -20,6 +20,12 @@ runs:
           node_modules
           **/*/node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: ls -la
+      name: Root folder
+      shell: bash
+    - run: ls -la services/frontend
+      name: Frontend folder
+      shell: bash
     - name: Install Node.js dependencies
       run: yarn --frozen-lockfile --no-progress --non-interactive
       shell: bash

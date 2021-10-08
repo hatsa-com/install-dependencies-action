@@ -26,6 +26,8 @@ runs:
     - run: ls -la services/frontend
       name: Frontend folder
       shell: bash
-    - name: Install Node.js dependencies
-      run: yarn --frozen-lockfile --no-progress --non-interactive
+    - run: yarn check --verify-tree
       shell: bash
+#    - name: Install Node.js dependencies
+#      run: yarn --frozen-lockfile --no-progress --non-interactive
+#      shell: bash
